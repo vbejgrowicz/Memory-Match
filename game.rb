@@ -1,10 +1,15 @@
 require './player'
+require './board'
+
 class Game
   attr_reader :player, :board
 
   def initialize
     @player = Player.ask_name
     @difficulty = set_difficulty
+    @board = Board.generate_size(@difficulty)
+    play
+  end
 
   end
   private
