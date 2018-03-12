@@ -8,6 +8,6 @@ class Card
   end
 
   def to_s
-    @visible == true ? " #{value} " : " #{position} "
+    @visible == true ? value.to_s.center(4) : position.to_s.center(4)
   end
 end
