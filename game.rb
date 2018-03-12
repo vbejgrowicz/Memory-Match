@@ -11,7 +11,11 @@ class Game
     play
   end
 
+  def play
+    board.render
+    puts "Enter a guess, #{player.name}"
   end
+
   private
 
   def set_difficulty

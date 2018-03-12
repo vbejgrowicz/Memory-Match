@@ -7,4 +7,7 @@ class Card
     @visible = false
   end
 
+  def to_s
+    @visible == true ? " #{value} " : " #{position} "
+  end
 end

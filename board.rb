@@ -5,6 +5,9 @@ class Board
     board_size = { easy: 4, medium: 6, hard: 8 }
     Board.new(board_size[level])
   end
+
+  attr_reader :cards_array, :size
+
   def initialize(size)
     @size = size
     @cards_array = []
@@ -18,6 +21,21 @@ class Board
     end
     cards_array
   end
+
+  def render
+    system('clear')
+    borders = '-' * (10 * (size / 2) + 1)
+    display_string = ''
+    card_grid.each_with_index do |row, index|
+      display_string << borders + "\n" if index.zero?
+      display_string << '|'
+      display_string << row.join('|')
+      display_string << '|' + "\n"
+      display_string << borders + "\n"
+    end
+    puts display_string
+  end
+
   private
 
   def position_ids
@@ -34,5 +52,12 @@ class Board
     card_values = values.concat(values)
     card_values.shuffle!
   end
+
+  def card_grid
+    rows = cards_array.each_slice(size)
+    grid = rows.map do |row|
+      row.map(&:to_s)
+    end
+    grid
   end
 end
