@@ -1,7 +1,9 @@
+require './player'
 class Game
   attr_reader :player, :board
 
   def initialize
+    @player = Player.ask_name
     @difficulty = set_difficulty
 
   end
