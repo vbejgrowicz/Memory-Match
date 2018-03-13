@@ -11,9 +11,17 @@ class Game
     play
   end
 
-  def play
+  def won?
+    board.cards_array.all?(&:showing?)
+  end
+
     board.render
-    puts "Enter a guess, #{player.name}"
+
+  def play
+    until won?
+      board.render
+      play_turn
+    end
   end
 
   private
