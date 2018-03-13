@@ -11,4 +11,9 @@ class Player
   def initialize(name)
     @name = name
   end
+
+  def guess
+    puts 'Enter a position of card to flip'
+    gets.chomp.upcase
+  end
 end

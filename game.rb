@@ -16,11 +16,21 @@ class Game
   end
 
     board.render
+  def player_input
+    input = nil
+    input = player.guess until input && board.valid_position?(input)
+    input
+  end
+
+  def make_guess
+    card = board.reveal(player_input)
+    compare_cards(card)
+  end
 
   def play
     until won?
       board.render
-      play_turn
+      make_guess
     end
   end
 
