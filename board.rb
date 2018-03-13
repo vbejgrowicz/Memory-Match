@@ -41,11 +41,12 @@ class Board
     if card.showing?
       puts "You can't flip a card that is already showing"
       sleep(1)
+      nil
     else
       card.show
       render
+      card
     end
-    card
   end
 
   def match?(card1, card2)
