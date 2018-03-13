@@ -10,14 +10,14 @@ class Board
 
   def initialize(size)
     @size = size
+    @position_ids = position_ids
     @cards_array = []
     populate_cards
   end
 
   def populate_cards
-    positions = position_ids
     card_values.each_with_index do |value, index|
-      cards_array << Card.new(value, positions[index])
+      cards_array << Card.new(value, position_ids[index])
     end
     cards_array
   end
