@@ -17,7 +17,7 @@ class Game
   end
 
   def compare_cards(current_card)
-    if previous_card && current_card.position != previous_card.position
+    if previous_card
       if board.match?(previous_card, current_card)
         puts "You found a match, #{player.name}"
         sleep(1)
@@ -41,7 +41,7 @@ class Game
 
   def make_guess
     card = board.reveal(player_input)
-    compare_cards(card)
+    compare_cards(card) unless card.nil?
   end
 
   def play
