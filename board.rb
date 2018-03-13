@@ -46,6 +46,10 @@ class Board
     card
   end
 
+  def match?(card1, card2)
+    card1.value == card2.value
+  end
+
   def valid_position?(position)
     position_ids.include?(position)
   end
