@@ -36,7 +36,22 @@ class Board
     puts display_string
   end
 
+  def reveal(id)
+    card = find_card(id)
+    if card.showing?
+      puts "You can't flip a card that is already revealed"
+    else
+      card.show
+    end
+    card
+  end
+
   private
+
+  def find_card(id)
+    position = position_ids.index(id)
+    cards_array[position]
+  end
 
   def position_ids
     ids = []
