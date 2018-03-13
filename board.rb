@@ -46,6 +46,10 @@ class Board
     card
   end
 
+  def valid_position?(position)
+    position_ids.include?(position)
+  end
+
   private
 
   def find_card(id)
