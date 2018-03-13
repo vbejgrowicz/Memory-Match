@@ -49,6 +49,8 @@ class Game
       board.render
       make_guess
     end
+    board.render
+    puts "#{player.name}, you have found all of the matches!"
   end
 
   private
