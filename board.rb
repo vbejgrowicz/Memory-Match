@@ -39,9 +39,11 @@ class Board
   def reveal(id)
     card = find_card(id)
     if card.showing?
-      puts "You can't flip a card that is already revealed"
+      puts "You can't flip a card that is already showing"
+      sleep(1)
     else
       card.show
+      render
     end
     card
   end

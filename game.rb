@@ -2,12 +2,13 @@ require './player'
 require './board'
 
 class Game
-  attr_reader :player, :board
+  attr_reader :player, :board, :previous_card
 
   def initialize
     @player = Player.ask_name
     @difficulty = set_difficulty
     @board = Board.generate_size(@difficulty)
+    @previous_card = nil
     play
   end
 
@@ -15,7 +16,23 @@ class Game
     board.cards_array.all?(&:showing?)
   end
 
-    board.render
+  def compare_cards(current_card)
+    if previous_card && current_card.position != previous_card.position
+      if board.match?(previous_card, current_card)
+        puts "You found a match, #{player.name}"
+        sleep(1)
+      else
+        puts "Try Again, #{player.name}"
+        sleep(3)
+        [previous_card, current_card].each(&:unshow)
+        board.render
+      end
+      @previous_card = nil
+    else
+      @previous_card = current_card
+    end
+  end
+
   def player_input
     input = nil
     input = player.guess until input && board.valid_position?(input)
